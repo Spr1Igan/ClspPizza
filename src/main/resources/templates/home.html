@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+
+<style>
+
+    td, th {
+        border: 1px solid #999;
+        padding: 0.5rem;
+        text-align: left;
+        background-color: lightgray;
+    }
+
+    th {
+        width: 200px;
+        background-color: darkgray;
+    }
+
+
+    .td_img {
+        max-width:150px;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        display: box;
+        word-wrap: break-word;
+        -webkit-box-orient: vertical;
+    }
+
+    .td_text {
+        min-width: 300px;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 5;
+        display: -webkit-box;
+        display: box;
+        word-wrap: break-word;
+        -webkit-box-orient: vertical;
+    }
+
+    .content
+    {
+
+        /*height: 150px;*/
+        text-align: center;
+    }
+
+
+    /* Flexbox Styles */
+    .content {
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+</style>
+
+<body style="background-color: silver">
+<nav  class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="/home">3,14ццa Jhons</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                 <li>
+                <form method="post" th:action="@{/search}">
+                    <section class="w-100 p-4 pb-4 d-flex justify-content-center align-items-center flex-column">
+                        <div>
+                            <div class="input-group">
+                                <input name="text" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon">
+                                <button type="submit" class="btn btn-outline-primary">search</button>
+                            </div>
+                        </div>
+                    </section>
+                </form>
+
+                </li>
+
+                <!--                <li class="nav-item"><a class="nav-link" href="/control/maincontrol">Control Panel</a></li>-->
+
+            </ul>
+        </div>
+        <ul th:switch="${#authentication} ? ${#authorization.expression('isAuthenticated()')} : ${false}">
+
+        <a class="nav-linke activ" aria-current="page" href="/control/maincontrol">Control Panel</a>
+            <span th:case="${true}">
+            <li th:text="'user: ' + ${Username}"/>
+
+                <form th:action="@{/logout}" method="post">
+                    <input type="submit" value="Sign Out"/>
+                </form>
+            </span>
+            <span th:case="${false}">
+                <form th:action="@{/login}">
+                    <input type="submit" value="Log In"/>
+                </form>
+            </span>
+
+
+        </ul>
+    </div>
+</nav>
+<div class="content">
+    <div th:each="el : ${p}">
+
+        <table>
+            <tr>
+                <th>
+                    <p th:text="${el.Name}"></p>
+                </th>
+
+            </tr>
+            <tr>
+                <td class="td_text">
+                    <img class="td_img" th:src="${el.Img}">
+                    <p th:text="${el.Disc}"></p>
+                    <p th:text="'Price: ' + ${el.Price} + ' EUR'"></p>
+                    <div>
+                        <a th:href="'/Buy/' + ${el.id}" type="button" class="btn btn-primary">Buy</a>
+                    </div>
+                </td>
+
+            </tr>
+
+        </table>
+    </div>
+</div>
+</body>
+</html>
