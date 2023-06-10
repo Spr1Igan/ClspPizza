@@ -1,10 +1,9 @@
 package com.example.sprsite.controllers;
 
-import com.example.sprsite.models.Person;
 import com.example.sprsite.models.Pizza;
 import com.example.sprsite.models.repo.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
+@PreAuthorize("hasAuthority('ADMIN')")
 public class ControlPanelController {
 
     @Autowired

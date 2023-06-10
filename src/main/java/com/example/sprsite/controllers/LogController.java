@@ -1,17 +1,12 @@
 package com.example.sprsite.controllers;
 
-import com.example.sprsite.models.Person;
-import com.example.sprsite.models.Pizza;
 import com.example.sprsite.models.Role;
 import com.example.sprsite.models.User;
-import com.example.sprsite.models.repo.PersonRepository;
 import com.example.sprsite.models.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.Map;

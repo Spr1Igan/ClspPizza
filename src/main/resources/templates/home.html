@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -71,17 +71,17 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                 <li>
-                <form method="post" th:action="@{/search}">
-                    <section class="w-100 p-4 pb-4 d-flex justify-content-center align-items-center flex-column">
-                        <div>
-                            <div class="input-group">
-                                <input name="text" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon">
-                                <button type="submit" class="btn btn-outline-primary">search</button>
+                <li>
+                    <form method="post" th:action="@{/search}">
+                        <section class="w-100 p-4 pb-4 d-flex justify-content-center align-items-center flex-column">
+                            <div>
+                                <div class="input-group">
+                                    <input name="text" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon">
+                                    <button type="submit" class="btn btn-outline-primary">search</button>
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                </form>
+                        </section>
+                    </form>
 
                 </li>
 
@@ -89,15 +89,22 @@
 
             </ul>
         </div>
-        <ul th:switch="${#authentication} ? ${#authorization.expression('isAuthenticated()')} : ${false}">
+        <span th:switch="${#authentication} ? ${#authorization.expression('isAuthenticated()')} : ${false}">
 
-        <a class="nav-linke activ" aria-current="page" href="/control/maincontrol">Control Panel</a>
+
             <span th:case="${true}">
-            <li th:text="'user: ' + ${Username}"/>
 
-                <form th:action="@{/logout}" method="post">
-                    <input type="submit" value="Sign Out"/>
-                </form>
+
+                    <form th:action="@{/logout}" method="post">
+                        <h7 th:text="'user: ' + ${Username}"/>
+                        <input type="submit" value="Sign Out"/>
+                    </form>
+                <span sec:authorize="hasAuthority('ADMIN')">
+                    <a class="btn btn-primary" href="/user" >User Control</a>
+                </span>
+                <span sec:authorize="hasAuthority('ADMIN')">
+                     <a class="btn btn-primary" href="/control/maincontrol">Control Panel</a>
+                </span>
             </span>
             <span th:case="${false}">
                 <form th:action="@{/login}">
@@ -106,7 +113,7 @@
             </span>
 
 
-        </ul>
+        </span>
     </div>
 </nav>
 <div class="content">

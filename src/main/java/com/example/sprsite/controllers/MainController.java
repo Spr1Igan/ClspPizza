@@ -4,7 +4,6 @@ import com.example.sprsite.models.Pizza;
 import com.example.sprsite.models.User;
 import com.example.sprsite.models.repo.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +30,7 @@ public class MainController {
         }
         Iterable<Pizza> p = pizzaRepository.findAll();
         model.addAttribute("p" ,p);
-        return "Home";
+        return "home.html";
 
     }
 
@@ -40,7 +39,7 @@ public class MainController {
         Iterable<Pizza> p = pizzaRepository.FingByName(text);
         model.addAttribute("p" ,p);
         // model.addAttribute("title", "Title page");
-        return "home";
+        return "home.html";
 
 
 
