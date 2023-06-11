@@ -1,64 +1,65 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" thref="/static/css/mainstyle.css"/>
+    <link href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" rel="stylesheet" />
 </head>
 <style>
-    td, th {
-        border: 1px solid #999;
-        padding: 0.5rem;
-        text-align: left;
-        background-color: lightgray;
-    }
+    /*td, th {*/
+    /*    border: 1px solid #999;*/
+    /*    padding: 0.5rem;*/
+    /*    text-align: left;*/
+    /*    background-color: lightgray;*/
+    /*}*/
 
-    th {
-        width: 200px;
-        background-color: darkgray;
-    }
-
-
-    .td_img {
-        max-width:150px;
-        -ms-text-overflow: ellipsis;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        -webkit-line-clamp: 3;
-        display: -webkit-box;
-        display: box;
-        word-wrap: break-word;
-        -webkit-box-orient: vertical;
-    }
-
-    .td_text {
-        min-width: 300px;
-        -ms-text-overflow: ellipsis;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        -webkit-line-clamp: 5;
-        display: -webkit-box;
-        display: box;
-        word-wrap: break-word;
-        -webkit-box-orient: vertical;
-    }
-
-    .content
-    {
-
-        /*height: 150px;*/
-        text-align: center;
-    }
+    /*th {*/
+    /*    width: 200px;*/
+    /*    background-color: darkgray;*/
+    /*}*/
 
 
-    /* Flexbox Styles */
-    .content {
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: 5px;
-        margin-right: 5px;
-    }
+    /*.td_img {*/
+    /*    max-width:150px;*/
+    /*    -ms-text-overflow: ellipsis;*/
+    /*    text-overflow: ellipsis;*/
+    /*    overflow: hidden;*/
+    /*    -webkit-line-clamp: 3;*/
+    /*    display: -webkit-box;*/
+    /*    display: box;*/
+    /*    word-wrap: break-word;*/
+    /*    -webkit-box-orient: vertical;*/
+    /*}*/
+
+    /*.td_text {*/
+    /*    min-width: 300px;*/
+    /*    -ms-text-overflow: ellipsis;*/
+    /*    text-overflow: ellipsis;*/
+    /*    overflow: hidden;*/
+    /*    -webkit-line-clamp: 5;*/
+    /*    display: -webkit-box;*/
+    /*    display: box;*/
+    /*    word-wrap: break-word;*/
+    /*    -webkit-box-orient: vertical;*/
+    /*}*/
+
+    /*.content*/
+    /*{*/
+
+    /*    !*height: 150px;*!*/
+    /*    text-align: center;*/
+    /*}*/
+
+
+    /*!* Flexbox Styles *!*/
+    /*.content {*/
+    /*    display: flex;*/
+    /*    flex-wrap: wrap;*/
+    /*    margin-left: 5px;*/
+    /*    margin-right: 5px;*/
+    /*}*/
 
 
 </style>
