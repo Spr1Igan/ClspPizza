@@ -30,16 +30,19 @@ public class MainController {
         }
         Iterable<Pizza> p = pizzaRepository.findAll();
         model.addAttribute("p" ,p);
-        return "home.html";
+        return "home";
 
     }
 
     @PostMapping("/search")
-    public String search(@RequestParam String text, Model model) {
+    public String search(@RequestParam String text, Model model ,@AuthenticationPrincipal User user) {
+        if(user != null) {
+            model.addAttribute("Username", user.getUsername());
+        }
         Iterable<Pizza> p = pizzaRepository.FingByName(text);
         model.addAttribute("p" ,p);
         // model.addAttribute("title", "Title page");
-        return "home.html";
+        return "home";
 
 
 

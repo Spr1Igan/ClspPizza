@@ -1,0 +1,52 @@
+td, th {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+    background-color: lightgray;
+}
+
+th {
+    width: 200px;
+    background-color: darkgray;
+}
+
+
+.td_img {
+    max-width:150px;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 3;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+}
+
+.td_text {
+    min-width: 300px;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -webkit-line-clamp: 5;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+}
+
+.content
+{
+
+    /*height: 150px;*/
+    text-align: center;
+}
+
+
+/* Flexbox Styles */
+.content {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 5px;
+    margin-right: 5px;
+}

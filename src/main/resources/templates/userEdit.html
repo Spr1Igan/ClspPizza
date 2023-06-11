@@ -15,7 +15,7 @@
 
 
         <div th:each="el : ${user}">
-          <input th:value="${el.id}" type="text" id="form2Example2" class="form-control" name="id">
+          <input th:value="${el.id}" type="hidden" id="form2Example2" class="form-control" name="id">
           <!-- username input -->
           <div class="form-outline mb-4">
             <input th:value="${el.username}" type="text" id="form2Example2" class="form-control" name="username">
