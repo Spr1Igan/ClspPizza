@@ -127,10 +127,13 @@
 
             </tr>
             <tr>
-                <td class="td_text">
+                <td class="td_img">
                     <img class="td_img" th:src="${el.Img}">
+                </td>
+                <td class="td_text">
+
                     <p th:text="${el.Disc}"></p>
-                    <p th:text="'Price: ' + ${el.Price} + ' EUR'"></p>
+                    <h6><p th:text="'Price: ' + ${el.Price} + ' EUR'"></p></h6>
                     <div>
                         <a th:href="'/Buy/' + ${el.id}" type="button" class="btn btn-primary">Buy</a>
                     </div>
