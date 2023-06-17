@@ -1,9 +1,9 @@
 package com.example.sprsite.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Set;
+
 @Entity
 public class Pizza {
     @Id
@@ -13,7 +13,10 @@ public class Pizza {
     private String Disc;
     private double Price;
     private String Img;
-
+    ///////////////////////////////////////////////////////////
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "pizza")
+    private Set<Order_tovar> order_tovars;
+    /////////////////////////////////////////////////////////
     public Long getId() {
         return id;
     }

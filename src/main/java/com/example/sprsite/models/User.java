@@ -20,7 +20,19 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+/////////////////////////////////////////////////////////////
+@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+private Set<Orders> orders;
 
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
+    }
+
+    /////////////////////////////////////////////////////////////
     public long getId() {
         return id;
     }

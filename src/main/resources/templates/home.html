@@ -101,6 +101,7 @@
                     </form>
                 <span sec:authorize="hasAuthority('ADMIN')">
                     <a class="btn btn-primary" href="/user" >User Control</a>
+                    <a class="btn btn-primary" href="/order/create" >new order</a>
                 </span>
                 <span sec:authorize="hasAuthority('ADMIN')">
                      <a class="btn btn-primary" href="/control/maincontrol">Control Panel</a>
@@ -135,7 +136,7 @@
                     <p th:text="${el.Disc}"></p>
                     <h6><p th:text="'Price: ' + ${el.Price} + ' EUR'"></p></h6>
                     <div>
-                        <a th:href="'/Buy/' + ${el.id}" type="button" class="btn btn-primary">Buy</a>
+                        <a th:href="'/order/add/' + ${el.id}" type="button" class="btn btn-primary">Buy</a>
                     </div>
                 </td>
 
