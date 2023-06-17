@@ -9,6 +9,10 @@ public class Order_tovar {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    public long getId() {
+        return id;
+    }
+
     @ManyToOne(optional = false)
     @JoinColumn(name="pizza_id", nullable = false, updatable = true)
     private Pizza pizza;

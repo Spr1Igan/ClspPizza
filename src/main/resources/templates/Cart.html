@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span th:switch="${has}">
+     <span th:case="${true}">
+    <div class="content">
+
+
+        <div>
+
+            <p th:text="${order.status}"></p>
+            <div th:each="el : ${order.getOrder_tovars}">
+
+                <table>
+                    <tr>
+                        <th>
+                            <p th:text="${el.getPizza().getName()} + 'Count: ' + ${el.getCount()}"></p>
+                        </th>
+
+                    </tr>
+
+                </table>
+
+
+            </div>
+
+        </div>
+
+    </div>
+    <form th:action="@{/order/cart}" method="post">
+        <input type="submit" value="Order"/>
+    </form>
+</span>
+<span th:case="${false}">Cart is Empty</span>
+
+
+</span>
+</body>
+</html>

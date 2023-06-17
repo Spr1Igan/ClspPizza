@@ -13,6 +13,10 @@ public class Orders {
         time = new Timestamp(date.getTime());
     }
 
+    public long getId() {
+        return id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;

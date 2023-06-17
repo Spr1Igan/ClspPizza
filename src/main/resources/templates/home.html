@@ -7,62 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" rel="stylesheet" />
 </head>
-<style>
-    /*td, th {*/
-    /*    border: 1px solid #999;*/
-    /*    padding: 0.5rem;*/
-    /*    text-align: left;*/
-    /*    background-color: lightgray;*/
-    /*}*/
-
-    /*th {*/
-    /*    width: 200px;*/
-    /*    background-color: darkgray;*/
-    /*}*/
-
-
-    /*.td_img {*/
-    /*    max-width:150px;*/
-    /*    -ms-text-overflow: ellipsis;*/
-    /*    text-overflow: ellipsis;*/
-    /*    overflow: hidden;*/
-    /*    -webkit-line-clamp: 3;*/
-    /*    display: -webkit-box;*/
-    /*    display: box;*/
-    /*    word-wrap: break-word;*/
-    /*    -webkit-box-orient: vertical;*/
-    /*}*/
-
-    /*.td_text {*/
-    /*    min-width: 300px;*/
-    /*    -ms-text-overflow: ellipsis;*/
-    /*    text-overflow: ellipsis;*/
-    /*    overflow: hidden;*/
-    /*    -webkit-line-clamp: 5;*/
-    /*    display: -webkit-box;*/
-    /*    display: box;*/
-    /*    word-wrap: break-word;*/
-    /*    -webkit-box-orient: vertical;*/
-    /*}*/
-
-    /*.content*/
-    /*{*/
-
-    /*    !*height: 150px;*!*/
-    /*    text-align: center;*/
-    /*}*/
-
-
-    /*!* Flexbox Styles *!*/
-    /*.content {*/
-    /*    display: flex;*/
-    /*    flex-wrap: wrap;*/
-    /*    margin-left: 5px;*/
-    /*    margin-right: 5px;*/
-    /*}*/
-
-
-</style>
 
 <body style="background-color: silver">
 <nav  class="navbar navbar-expand-lg navbar-light bg-light">
@@ -78,6 +22,7 @@
                                 <div class="input-group">
                                     <input name="text" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon">
                                     <button type="submit" class="btn btn-outline-primary">search</button>
+                                    <a class="btn btn-primary" href="/order/cart" >Cart</a>
                                 </div>
                             </div>
                         </section>
@@ -101,11 +46,12 @@
                     </form>
                 <span sec:authorize="hasAuthority('ADMIN')">
                     <a class="btn btn-primary" href="/user" >User Control</a>
-                    <a class="btn btn-primary" href="/order/create" >new order</a>
+
                 </span>
                 <span sec:authorize="hasAuthority('ADMIN')">
                      <a class="btn btn-primary" href="/control/maincontrol">Control Panel</a>
                 </span>
+                <a class="btn btn-primary" href="/order/orders" >orders</a>
             </span>
             <span th:case="${false}">
                 <form th:action="@{/login}">
