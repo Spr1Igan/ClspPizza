@@ -3,12 +3,21 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>3.14zza</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" rel="stylesheet" />
+    <link href="/css/mainstyle.css" th:href="@{/css/cart.css}" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+
 </head>
 
 <body style="background-color: silver">
+<div id="openModal" class="modalDialog">
+    <div id="cart">
+
+    </div>
+</div>
 <nav  class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="/home">3,14ццa Jhons</a>
@@ -21,8 +30,8 @@
                             <div>
                                 <div class="input-group">
                                     <input name="text" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon">
-                                    <button type="submit" class="btn btn-outline-primary">search</button>
-                                    <a class="btn btn-primary" href="/order/cart" >Cart</a>
+                                    <button type="submit" class="btn btn-outline-dark">search</button>
+                                    <a class="btn btn-dark" href="#openModal" >Cart</a>
                                 </div>
                             </div>
                         </section>
@@ -45,18 +54,16 @@
                         <input type="submit" value="Sign Out"/>
                     </form>
                 <span sec:authorize="hasAuthority('ADMIN')">
-                    <a class="btn btn-primary" href="/user" >User Control</a>
+                    <a class="btn btn-dark" href="/user" >User Control</a>
 
                 </span>
                 <span sec:authorize="hasAuthority('ADMIN')">
-                     <a class="btn btn-primary" href="/control/maincontrol">Control Panel</a>
+                     <a class="btn btn-dark" href="/control/maincontrol">Control Panel</a>
                 </span>
-                <a class="btn btn-primary" href="/order/orders" >orders</a>
+                <a class="btn btn-dark" href="/order/orders" >orders</a>
             </span>
             <span th:case="${false}">
-                <form th:action="@{/login}">
-                    <input type="submit" value="Log In"/>
-                </form>
+                <a class="btn btn-dark" href="/login" >Log In</a>
             </span>
 
 
@@ -64,11 +71,12 @@
     </div>
 </nav>
 <div class="content">
+
     <div th:each="el : ${p}">
 
         <table>
             <tr>
-                <th>
+                <th style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
                     <p th:text="${el.Name}"></p>
                 </th>
 
@@ -82,14 +90,23 @@
                     <p th:text="${el.Disc}"></p>
                     <h6><p th:text="'Price: ' + ${el.Price} + ' EUR'"></p></h6>
                     <div>
-                        <a th:href="'/order/add/' + ${el.id}" type="button" class="btn btn-primary">Buy</a>
+                        <form th:action="@{/order/add/{id}(id=${el.id})}" method="post">
+
+                            <button type="submit" class="btn btn-primary">Buy</button>
+                            <input class="upduwn" value="1" type="number" id="quantity" name="quantity" min="1" max="15">
+
+                        </form>
                     </div>
                 </td>
 
             </tr>
 
         </table>
+
     </div>
 </div>
+<script>
+    $("#cart").load("/order/cart");
+</script>
 </body>
 </html>

@@ -1,9 +1,9 @@
 td, th {
     border: 1px solid #999;
     padding: 0.5rem;
-    text-align: left;
-    background-color: lightgray;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    text-align: center;
+    /*background-color: lightgray;*/
+    /*box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);*/
     transition: 0.3s;
     margin-right: 5px;
     margin-left: 5px;
@@ -18,7 +18,6 @@ th {
     border-radius: 5px;
 }
 
-
 .td_img {
     width:300px;
     -ms-text-overflow: ellipsis;
@@ -30,10 +29,13 @@ th {
     word-wrap: break-word;
     -webkit-box-orient: vertical;
     box-sizing: content-box;
+    background-color: lightgray;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .td_text {
-    min-width: 300px;
+    max-width: 318px;
+    min-width: 318px;
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -43,6 +45,8 @@ th {
     word-wrap: break-word;
     -webkit-box-orient: vertical;
     font-size: small;
+    background-color: lightgray;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .content
@@ -62,3 +66,12 @@ th {
     max-width: 80%;
 
 }
+.upduwn{
+    margin: 0;
+    font-family: cursive;
+    font-size: initial;
+    line-height: inherit;
+    height: 35px;
+    width: 40px;
+}
+

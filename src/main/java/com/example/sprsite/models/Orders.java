@@ -55,5 +55,14 @@ public class Orders {
         this.user = user;
     }
 
+    public double getTotalPrice(){
+        double tp = 0f;
+        for (Order_tovar i : order_tovars) {
+            tp += i.getPizza().getPrice() * i.getCount();
+        }
+
+        return tp;
+    }
+
 
 }

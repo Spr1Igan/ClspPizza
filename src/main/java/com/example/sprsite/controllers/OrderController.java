@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -41,8 +42,8 @@ public class OrderController {
     }
 
 
-    @GetMapping("/order/add/{id}")
-    public String orderadd(Model model, @PathVariable long id, @AuthenticationPrincipal User user) {
+    @PostMapping("/order/add/{id}")
+    public String orderadd(Model model, @PathVariable long id, @AuthenticationPrincipal User user, @RequestParam int quantity) {
 
        if(httpSessionBean.getOrder() == null){
            httpSessionBean.setOrder(new Orders());
@@ -59,7 +60,7 @@ public class OrderController {
 
                for (Order_tovar i : mainpizzas) {
                    if (i.getPizza().getId() == id) {
-                       int co = i.getCount() + 1;
+                       int co = i.getCount() + quantity;
                        i.setCount(co);
                        return "redirect:/home";
                    }
@@ -67,9 +68,8 @@ public class OrderController {
 
                Order_tovar ot = new Order_tovar();
                Optional<Pizza> p = pizzaRepository.findById(id);
-               long a = 1;
                ot.setOrders(httpSessionBean.getOrder());
-               ot.setCount(1);
+               ot.setCount(quantity);
                ot.setPizza(p.orElseThrow());
                mainpizzas.add(ot);
 
@@ -77,9 +77,8 @@ public class OrderController {
        }else{
            Order_tovar ot = new Order_tovar();
            Optional<Pizza> p = pizzaRepository.findById(id);
-           long a = 1;
            ot.setOrders(httpSessionBean.getOrder());
-           ot.setCount(1);
+           ot.setCount(quantity);
            ot.setPizza(p.orElseThrow());
            mainorder.setOrder_tovars(new HashSet<Order_tovar>());
            mainorder.getOrder_tovars().add(ot);
@@ -96,10 +95,13 @@ public class OrderController {
         boolean has;
         if(httpSessionBean.getOrder() != null) {
             has = true;
+            model.addAttribute("order", httpSessionBean.getOrder());
+            model.addAttribute("total_price",String.format("%.2f", httpSessionBean.getOrder().getTotalPrice()));
         }else{has = false;}
-            Orders mainorder = httpSessionBean.getOrder();
-            model.addAttribute("order", mainorder);
-           model.addAttribute("has", has);
+
+
+            model.addAttribute("has", has);
+
             return "cart";
 
 
@@ -108,8 +110,12 @@ public class OrderController {
     public String SaveOrder(Model model,@AuthenticationPrincipal User user) {
 
         Orders mainorder = httpSessionBean.getOrder();
+        if(user != null){
+            mainorder.setUser(user);
+        }
         mainorder.setStatus("Active");
         orderRepository.save(mainorder);
+        httpSessionBean.setOrder(null);
         return "redirect:/home";
 
     }
