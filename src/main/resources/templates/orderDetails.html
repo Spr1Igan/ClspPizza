@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Details</title>
+    <link href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" rel="stylesheet" />
+    <link href="/css/order.css" th:href="@{/css/order.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+
+<div style="margin-left: 0; margin-right: 0; max-width: 0;" class="content">
+    <div class="or_cont">
+
+
+        <h5><p th:text="'Order № ' + ${order.get().getId}"></p></h5>
+        <p th:text="'Status ' + ${order.get().getStatus()}"></p>
+
+
+        <div class="mostly-customized-scrollbar">
+            <table>
+
+
+
+                <div th:each="el : ${order.get().getOrder_tovars()}">
+
+                    <tr>
+
+                        <td class="td_text">
+
+                            <img style="box-shadow: -4px 4px 15px 7px rgba(0,0,0,0.5);" width="100px" height="100 px" th:src="${el.getPizza().getImg()}"/>
+
+                            <h4 th:text="${el.getPizza().getName()}"></h4>
+                            <p th:text="'Price: ' + ${el.getPizza().getPrice()} + ', Count: ' + ${el.getCount()}"></p>
+                            <div>
+                            </div>
+                        </td>
+
+                    </tr>
+
+                </div>
+            </table>
+
+        </div>
+        <tr>
+            <th style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+                <p th:text="'Total Price ' + ${order.get().getTotalPrice()}"></p>
+                <p th:text="'Date: ' + ${order.get().getTime()}"></p>
+                <a class="btn btn-dark" href="/order/orders" >Back</a>
+            </th>
+
+        </tr>
+    </div>
+</div>
+
+</body>
+</html>

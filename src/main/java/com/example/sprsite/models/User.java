@@ -20,6 +20,10 @@ public class User implements UserDetails {
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
+    ////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////
+
 /////////////////////////////////////////////////////////////
 @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 private Set<Orders> orders;

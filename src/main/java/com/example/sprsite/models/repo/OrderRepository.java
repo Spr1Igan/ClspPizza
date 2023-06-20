@@ -10,4 +10,9 @@ public interface OrderRepository extends CrudRepository<Orders, Long> {
     @Modifying
     @Query(value="select i from Orders i where i.user.id = ?1")
     Iterable<Orders> getUserOrders(Long id);
+
+    @Modifying
+    @Query(value="select i from Orders i where i.id = ?1")
+    Iterable<Orders> findId(Long id);
+
 }

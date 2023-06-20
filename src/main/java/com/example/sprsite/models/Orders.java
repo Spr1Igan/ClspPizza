@@ -26,6 +26,10 @@ public class Orders {
 
     private Timestamp time;
 
+    public Timestamp getTime() {
+        return time;
+    }
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "order")
     private Set<Order_tovar> order_tovars;
 

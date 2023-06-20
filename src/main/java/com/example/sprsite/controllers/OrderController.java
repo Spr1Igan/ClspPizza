@@ -18,9 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 
 @Controller
@@ -114,7 +112,12 @@ public class OrderController {
             mainorder.setUser(user);
         }
         mainorder.setStatus("Active");
+        Set<Order_tovar> ot = mainorder.getOrder_tovars();
         orderRepository.save(mainorder);
+        for(Order_tovar i: ot){
+            tovrep.save(i);
+        }
+
         httpSessionBean.setOrder(null);
         return "redirect:/home";
 
@@ -128,4 +131,18 @@ public class OrderController {
         return "orders";
 
     }
+    @GetMapping("/order/details/{id}")
+    public String Edit(Model model, @PathVariable long id) {
+
+        Optional<Orders> p = orderRepository.findById(id);
+        model.addAttribute("order",p);
+        return "orderDetails";
+    }
+
+
+
+
+
+
+
 }

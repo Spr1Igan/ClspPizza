@@ -12,7 +12,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import javax.sql.DataSource;
 
 
 @Configuration
@@ -21,10 +20,17 @@ import javax.sql.DataSource;
 public class WebSecurityConfig {
 
     @Autowired
-    private DataSource dataSource;
-    @Autowired
     private UserService userService;
+//    private final PasswordEncoder passwordEncoder;
+//
+//    public WebSecurityConfig(PasswordEncoder passwordEncoder) {
+//        this.passwordEncoder = passwordEncoder;
+//    }
 
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder( 8);
+//    }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -48,8 +54,5 @@ public class WebSecurityConfig {
                 .passwordEncoder(NoOpPasswordEncoder.getInstance());
 
     }
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 }

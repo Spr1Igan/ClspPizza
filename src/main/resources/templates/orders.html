@@ -3,21 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="/css/mainstyle.css" th:href="@{/css/mainstyle.css}" rel="stylesheet" />
+    <link href="/css/order.css" th:href="@{/css/order.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<div th:each="el : ${order}">
+<nav  class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="/">3,14ццa Jhons Control</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
-    <table>
-        <tr>
-            <th>
-                <p th:text="${el.getId()}"></p>
-            </th>
+    </div>
+</nav>
+<div class="content">
+<div class="or_cont" th:each="f : ${order}">
 
-    </table>
+    <h5><p th:text="'Order № ' + ${f.getId()}"></p></h5>
+    <p th:text="'Status ' + ${f.getStatus()}"></p>
 
 
+        <div class="mostly-customized-scrollbar">
+        <table>
+
+
+
+            <div th:each="el : ${f.getOrder_tovars()}">
+
+            <tr>
+
+                <td class="td_text">
+
+                    <img style="box-shadow: -4px 4px 15px 7px rgba(0,0,0,0.5);" width="100px" height="100 px" th:src="${el.getPizza().getImg()}"/>
+
+                    <h4 th:text="${el.getPizza().getName()}"></h4>
+                    <p th:text="'Price: ' + ${el.getPizza().getPrice()} + ', Count: ' + ${el.getCount()}"></p>
+                    <div>
+                    </div>
+                </td>
+
+            </tr>
+
+            </div>
+        </table>
+
+    </div>
+    <tr>
+        <th style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+            <p th:text="'Total Price ' + ${f.getTotalPrice()}"></p>
+            <a class="btn btn-dark" th:href="'/order/details/' +  ${f.getId()}">Details</a>
+        </th>
+
+    </tr>
 </div>
 
 
+</div>
 </body>
 </html>
