@@ -21,16 +21,13 @@ public class WebSecurityConfig {
 
     @Autowired
     private UserService userService;
-//    private final PasswordEncoder passwordEncoder;
-//
-//    public WebSecurityConfig(PasswordEncoder passwordEncoder) {
-//        this.passwordEncoder = passwordEncoder;
-//    }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder( 8);
-//    }
+   @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Bean
+    public PasswordEncoder getPasswordEncoder() {
+        return new BCryptPasswordEncoder(8);
+    }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -51,7 +48,7 @@ public class WebSecurityConfig {
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService)
-                .passwordEncoder(NoOpPasswordEncoder.getInstance());
+                .passwordEncoder(passwordEncoder);
 
     }
 

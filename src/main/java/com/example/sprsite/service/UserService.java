@@ -3,6 +3,7 @@ package com.example.sprsite.service;
 import com.example.sprsite.models.Role;
 import com.example.sprsite.models.User;
 import com.example.sprsite.models.repo.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,6 +20,10 @@ public class UserService implements UserDetailsService {
         this.userRepo = userRepo;
     }
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo.findByUsername(username);
@@ -32,8 +37,7 @@ public class UserService implements UserDetailsService {
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
-
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepo.save(user);
 

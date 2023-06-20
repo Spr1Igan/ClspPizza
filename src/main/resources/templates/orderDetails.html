@@ -44,7 +44,7 @@
         </div>
         <tr>
             <th style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-                <p th:text="'Total Price ' + ${order.get().getTotalPrice()}"></p>
+                <p th:text="'Total Price ' + ${order.get().getTotalPriceString()}"></p>
                 <p th:text="'Date: ' + ${order.get().getTime()}"></p>
                 <a class="btn btn-dark" href="/order/orders" >Back</a>
             </th>

@@ -3,6 +3,7 @@ package com.example.sprsite.models;
 
 import jakarta.persistence.*;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.Set;
 import java.sql.Timestamp;
@@ -66,6 +67,10 @@ public class Orders {
         }
 
         return tp;
+    }
+    public String getTotalPriceString(){
+        DecimalFormat df = new DecimalFormat("#.##");
+        return df.format(getTotalPrice());
     }
 
 

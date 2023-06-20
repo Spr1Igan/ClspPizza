@@ -3,6 +3,7 @@ package com.example.sprsite.controllers;
 import com.example.sprsite.models.Role;
 import com.example.sprsite.models.User;
 import com.example.sprsite.models.repo.UserRepository;
+import com.example.sprsite.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

@@ -49,7 +49,7 @@
     </div>
     <tr>
         <th style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
-            <p th:text="'Total Price ' + ${f.getTotalPrice()}"></p>
+            <p th:text="'Total Price ' + ${f.getTotalPriceString()}"></p>
             <a class="btn btn-dark" th:href="'/order/details/' +  ${f.getId()}">Details</a>
         </th>
 
